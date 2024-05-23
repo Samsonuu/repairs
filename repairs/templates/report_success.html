@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Success</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        body {
+            background-color: rgba(33, 33, 33, 0.9); /* 深灰色背景 */
+            color: #fff; /* 文字颜色白色 */
+            padding-top: 20px;
+        }
+        h1, p {
+            text-align: center; /* 文字居中 */
+        }
+        button[type="button"] {
+            display: block; /* 按钮块级显示 */
+            margin: 20px auto; /* 自动水平居中 */
+            background-color: #007bff; /* 按钮背景色蓝色 */
+            border-color: #007bff; /* 按钮边框色蓝色 */
+            color: #fff; /* 按钮文字颜色白色 */
+        }
+        button[type="button"]:hover {
+            background-color: #0056b3; /* 鼠标悬停时背景色深蓝 */
+            border-color: #0056b3; /* 鼠标悬停时边框色深蓝 */
+        }
+        button[type="button"] a {
+            color: #fff; /* 链接文字颜色白色 */
+            text-decoration: none; /* 取消下划线 */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>成功送出</h1>
+        <p>感謝你的報修</p>
+        <button type="button" class="btn btn-primary"><a href="{% url 'home' %}">回到報修頁面</a></button>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

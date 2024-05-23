@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>報修表單</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgba(33, 33, 33, 0.9);
+            color: #fff;
+            padding-top: 20px;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 100px;
+            border-radius: 15px;
+        }
+        .navbar-light {
+            background-color: rgba(241, 236, 236, 0.938);
+        }
+        .navbar-light .navbar-nav .nav-link {
+            color: #e47575ea;
+        }
+        .btn-primary {
+            background-color: #eb32f1;
+            border-color: #e749ec;
+        }
+        .btn-primary:hover {
+            background-color: #ff0101;
+            border-color: #f5145f;
+        }
+        .btn-secondary a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .form-group label {
+            color: #fff;
+        }
+        .form-control {
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 1px solid #ced4da;
+            color: #fff;
+        }
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">報修系統</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'view_reports' %}">查看報修紀錄</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'submit_report' %}">填寫報修表單</a>
+                    </li>
+                </ul>
+                {% if user.is_authenticated %}
+                    <span class="navbar-text">
+                        歡迎, {{ user.username }}! <a href="{% url 'logout' %}" class="ml-3">登出</a>
+                    </span>
+                {% else %}
+                    <span class="navbar-text">
+                        <a href="{% url 'login' %}" class="mr-3">登入</a>
+                        <a href="{% url 'register' %}">註冊</a>
+                    </span>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center">已報修紀錄</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">報修類別</th>
+                        <th scope="col">描述</th>
+                        <th scope="col">是否已完成</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for repair in user_repairs %}
+                    <tr>
+                        <td><strong style="color: rgb(55, 191, 245)">{{ repair.category }}</strong></td>
+                        <td><strong style="color: white">{{ repair.description }}</strong></td>
+                        <td><strong style="color: {% if repair.completed %} rgb(42, 238, 59) {% else %} #f5145f {% endif %}">{% if repair.completed %} 是 {% else %} 否 {% endif %}</strong></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

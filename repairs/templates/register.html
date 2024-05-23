@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>註冊</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgba(33, 33, 33, 0.9); /* 深灰色，透明度为0.9 */
+            color: #fff; /* 文字颜色为白色 */
+            padding-top: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 90vh;
+        }
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.1); /* 半透明白色背景 */
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+        }
+        .btn-primary {
+            background-color: #1b74ce; /* 深灰色背景 */
+            border-color: #343a40; /* 深灰色边框 */
+        }
+        .btn-primary:hover {
+            background-color: #ee3535d7; /* 悬停时稍微加深背景色 */
+            border-color: #23272b; /* 悬停时边框色略深 */
+        }
+        .text-danger {
+            color: #ff0000 !important; /* 强制红色文字 */
+        }
+        .form-text {
+            color: #fff; /* 提示文字颜色为白色 */
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input {
+            background-color: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .form-group input:focus {
+            background-color: rgba(255, 255, 255, 0.3); /* 聚焦时背景色加深 */
+            outline: none;
+        }
+        .fixed-bottom p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1 class="text-center mb-4">註冊</h1>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group row">
+                        <label for="{{ field.id_for_label }}" class="col-sm-4 col-form-label text-right">{{ field.label }}:</label>
+                        <div class="col-sm-8">
+                            {{ field }}
+                            {% if field.help_text %}
+                                <small class="form-text">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="text-danger">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+                <center><button type="submit" class="btn btn-primary" style="width: 80px; height: 40px;">註冊</button></center>
+            </form>
+            <div class="text-right mt-3">
+                <p>已經有帳戶了嗎？ <a href="{% url 'login' %}" class="text-danger">登入</a></p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

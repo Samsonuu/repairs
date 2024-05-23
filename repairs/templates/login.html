@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登入</title>
+    <style>
+        body {
+            background-color: #1a1a1a; /* 深灰色背景 */
+            color: #fff; /* 文字颜色为白色 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background-color: rgba(0, 0, 0, 0.5); /* 半透明黑色背景 */
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #333; /* 输入框背景色深灰色 */
+            color: #fff; /* 输入框文字颜色为白色 */
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #0e9fd8; /* 按钮背景色 */
+            color: #fff; /* 按钮文字颜色为白色 */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #ff4242; /* 悬停时按钮背景色 */
+        }
+
+        button[type="button"] {
+            width: 15%;
+            padding: 5px;
+            background-color: #6b36e6; /* 按钮背景色 */
+            color: #fff; /* 按钮文字颜色为白色 */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="button"]:hover {
+            background-color: #ff4242; /* 悬停时按钮背景色 */
+        }
+
+
+        a {
+            color: #fff; /* 链接文字颜色为白色 */
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline; /* 悬停时添加下划线 */
+        }
+    </style>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        <h1>登入</h1>
+        {{ form.as_p }}
+        <button type="submit">登入</button>
+        <button type="button"><a href="{% url 'register' %}">註冊</a></button>
+    </form>
+</body>
+</html>
